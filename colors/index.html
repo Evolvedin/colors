@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colors and Emotions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <main>
+<section class="color-changer-section">
+    <h2>Change Website Background Color</h2>
+    <div class="palette-label" onclick="document.getElementById('colorPicker').click();">
+        <div class="palette-circle"></div>
+    </div>
+    <input type="color" id="colorPicker" style="display: none;">
+    <p>Current RGBA Value: <span id="rgbaValue">-</span></p>
+</section>
+
+
+        <h1>Color Schemes and Their Characteristics</h1>
+
+    <section class="scheme-section">
+        <h2>Monochromatic</h2>
+        <div class="colors">
+            <div class="color-box" style="background-color: #b3d1ff;"></div>
+            <div class="color-box" style="background-color: #6699ff;"></div>
+            <div class="color-box" style="background-color: #3366ff;"></div>
+            <div class="color-box" style="background-color: #0033ff;"></div>
+        </div>
+        <p>Uses variations in lightness and saturation of a single color.</p>
+    </section>
+
+        <section class="scheme-section">
+            <h2>Triadic</h2>
+            <div class="colors">
+                <div class="color-box" style="background-color: #00ff00;"></div>
+                <div class="color-box" style="background-color: #ff0000;"></div>
+                <div class="color-box" style="background-color: #0000ff;"></div>
+            </div>
+            <p>Uses three colors evenly spaced around the color wheel.</p>
+        </section>
+
+        <section class="scheme-section">
+            <h2>Complementary</h2>
+            <div class="colors">
+                <div class="color-box" style="background-color: #ff0000;"></div>
+                <div class="color-box" style="background-color: #00ffff;"></div>
+            </div>
+            <p>Uses two colors from opposite sides of the color wheel.</p>
+        </section>
+    </main>
+
+    <script>
+        const colorPicker = document.getElementById("colorPicker");
+        const rgbaValueElem = document.getElementById("rgbaValue");
+
+        function hexToRgbA(hex) {
+            let r = 0, g = 0, b = 0;
+
+            if (hex.length === 4) {
+                r = "0x" + hex[1] + hex[1];
+                g = "0x" + hex[2] + hex[2];
+                b = "0x" + hex[3] + hex[3];
+            }
+            else if (hex.length === 7) {
+                r = "0x" + hex[1] + hex[2];
+                g = "0x" + hex[3] + hex[4];
+                b = "0x" + hex[5] + hex[6];
+            }
+
+            return "rgba(" + +r + "," + +g + "," + +b + ",1)";
+        }
+
+        colorPicker.addEventListener('input', function () {
+            const rgbaColor = hexToRgbA(colorPicker.value);
+            document.body.style.backgroundColor = rgbaColor;
+            rgbaValueElem.textContent = rgbaColor;
+        });
+    </script>
+
+</body>
+
+</html>
